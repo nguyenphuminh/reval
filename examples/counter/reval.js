@@ -3,11 +3,7 @@
 function el(tag, attr, body) {
 	const newEl = document.createElement(tag);
 		
-	if (Array.isArray(body)) {
-		body.forEach(item => newEl.append(item));
-	} else {
-		newEl.append(body);
-	}
+	Array.isArray(body) ? body.forEach(item => newEl.append(item)) : newEl.append(body);
 	
 	if (typeof attr === "object" && attr !== null) {
 		Object.keys(attr).forEach(attrName => {
@@ -24,18 +20,14 @@ function el(tag, attr, body) {
 
 function mount(target, child, before, replace) {
 	if (typeof child.render === "undefined" || child.render === null) {
-		if (!(typeof before === "undefined" || before === null)) {
-			replace ? target.replaceChild(child, before) : target.insertBefore(child, before);
-		} else {
-			target.append(child);
-		}
+		(!(typeof before === "undefined" || before === null)) ? 
+		(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
+		target.append(child);
 	} else {
 		child.el = child.render();
-		if (!(typeof before === "undefined" || before === null)) {
-			replace ? target.replaceChild(child.el, before) : target.insertBefore(child.el, before);
-		} else {
-			target.append(child.el);
-		}
+		(!(typeof before === "undefined" || before === null)) ?
+		(replace ? target.replaceChild(child.el, before) : target.insertBefore(child.el, before)) :
+		target.append(child.el);
 		child.mountedTo = target;
 		typeof child.onmount === "function" && child.onmount();
 	}
@@ -54,7 +46,9 @@ function unmount(target, child) {
 function setState(component, states) {
 	Object.keys(states).forEach(key => {
 		if (typeof states[key] === "object" || typeof states[key] === "function") {
-			component.states.assign(states, component.states);
+			Object.keys(states[key]).forEach(stateKey => {
+				component.states[key][stateKey] = states[key][stateKey];
+			});
 		} else {
 			component.states[key] = states[key];
 		}
