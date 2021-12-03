@@ -13,8 +13,6 @@
 				};
 
 				this.el = this.render();
-
-				bind(this);
 			}
 
 			render() {
@@ -24,25 +22,13 @@
 					el("br"),
 
 					el("button", { 
-						onclick: () => {
-							this.states.counter++
-						}
+						onclick: () => setState(this, { counter: this.states.counter + 1 })
 					}, "Increment"),
 
 					el("button", { 
-						onclick: () => {
-							this.states.counter--
-						}
+						onclick: () => setState(this, { counter: this.states.counter - 1 })
 					}, "Decrement")
 				]);
-			}
-
-			onmount() {
-				console.log("Mounted!")
-			}
-
-			onunmount() {
-				console.log("Unmounted!");
 			}
 		}
 		const counter = new Counter();

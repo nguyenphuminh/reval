@@ -73,11 +73,14 @@ unmount(parent, componentName)
 ```
 
 ## States
-You can create states using the `states` prop and the `bind` function:
+You can create states using the `states` prop:
 ```js
 this.states = {}
+```
 
-bind(this);
+and change the state with `setState`:
+```js
+setState(component, { state: value })
 ```
 
 If you don't know what states are, basically, the HTML element got re-rendered every time states are changed.
@@ -112,40 +115,30 @@ contains(parent, child)
 ```
 
 ## Creating a counter example!
-Basically, we will create a `Counter` component, set the `counter` state to `1`. `render()` should return an HTML element with a list of child nodes consists of the current value of the counter, a button for incrementing the counter, a button for decrementing the counter. Finally, we will create an instance of `Counter` called `counter` and mount it to `document.body`.
+Basically, we will create a `Counter` component, set the `counter` state to `1`. `render()` should return an HTML element with a list of child nodes consists of the current value of the counter, a button for incrementing the counter, a button for decrementing the counter. We will use `setState` to change the value of `counter` and re-render the element. Finally, we will create an instance of `Counter` called `counter` and mount it to `document.body`.
 
 ```js
 class Counter {
 	constructor() {
-		this.states = {
-			counter: 1
-		};
-
+		this.states = { counter: 1 };
 		this.el = this.render();
-
-		bind(this);
 	}
 
 	render() {
 		return el("h1", {}, [
 			this.states.counter,
 			
-			el("br"),
+			el("br"), // A blank line :D
 
 			el("button", { 
-				onclick: () => {
-					this.states.counter++
-				}
+				onclick: () => setState(this, { counter: this.states.counter + 1 })
 			}, "Increment"),
 
 			el("button", { 
-				onclick: () => {
-					this.states.counter--
-				}
+				onclick: () => setState(this, { counter: this.states.counter - 1 })
 			}, "Decrement")
 		]);
 	}
-
 }
 const counter = new Counter();
 

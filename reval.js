@@ -50,25 +50,17 @@ function unmount(target, child) {
 	}
 }
 
-function bind(component) {
-	const metadata = {};
-
-	Object.keys(component.states).forEach(key => {
-		metadata[key] = component.states[key];
-
-		Object.defineProperty(component.states, key, {
-			get() {
-				return metadata[key];
-			},
-
-			set(newKeyValue) {
-				metadata[key] = newKeyValue;
-				component.mountedTo.removeChild(component.el);
-				component.el = component.render();
-				component.mountedTo.appendChild(component.el);
-			}
-		});
-	});
+function setState(component, states) {
+	Object.keys(states).forEach(key => {
+		if (typeof states[key] === "object" || typeof states[key] === "function") {
+			component.states.assign(states, component.states);
+		} else {
+			component.states[key] = states[key];
+		}
+	})
+	component.mountedTo.removeChild(component.el);
+	component.el = component.render();
+	component.mountedTo.appendChild(component.el);
 }
 
 function attr(el, attrs) {
@@ -84,5 +76,5 @@ function contains(parent, child) {
 }
 
 if (typeof module === "object" && typeof module.exports === "object") {
-	module.exports = { el, mount, unmount, attr, style, contains, changeState };
+	module.exports = { el, mount, unmount, attr, style, contains, setState };
 }
