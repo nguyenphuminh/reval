@@ -146,13 +146,6 @@ class Counter {
 		]);
 	}
 
-	onmount() {
-		console.log("Mounted!")
-	}
-
-	onunmount() {
-		console.log("Unmounted!");
-	}
 }
 const counter = new Counter();
 
