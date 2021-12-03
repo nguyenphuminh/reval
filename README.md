@@ -11,7 +11,7 @@ You can also build your own front-end library from Reval, since its codebase is 
 ## Size comparison with other frameworks
 | Size               | Reval       | Vue         | React       | Angular           |
 | ------------------ | ----------- | ----------- | ----------- | ----------------- |
-| Minified & Gzipped | **0.5 KB**  | 33.4 kB     | 31.8K       | 111K              |
+| Minified & Gzipped | **0.5 KB**  | 33.4 KB     | 31.8KB      | 111KB             |
 
 ## Is it ready?
 Kind of, but its performance and scalabiltiy have remained untested.
