@@ -53,11 +53,6 @@ unmount(document.body, hello);
 Reval components all have a basic form like this:
 ```js
 class ComponentName {
-	constructor() {
-		// "this.el" is the representation of the component
-		this.el = this.render();
-	}
-
 	// this.render() returns an HTML element
 	render() {
 		return /* code goes here */;
@@ -120,15 +115,16 @@ Basically, we will create a `Counter` component, set the `counter` state to `1`.
 ```js
 class Counter {
 	constructor() {
-		this.states = { counter: 1 };
-		this.el = this.render();
+		this.states = {
+			counter: 1
+		};
 	}
 
 	render() {
 		return el("h1", {}, [
 			this.states.counter,
 			
-			el("br"), // A blank line :D
+			el("br"),
 
 			el("button", { 
 				onclick: () => setState(this, { counter: this.states.counter + 1 })
