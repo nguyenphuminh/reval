@@ -5,6 +5,9 @@ You can also build your own front-end library from Reval, since its codebase is 
 
 ## [How to use?](tutorial.md)
 
+## Is it ready?
+Simple, no.
+
 ## Copyrights and license
 This project is licensed under the MIT license
 
