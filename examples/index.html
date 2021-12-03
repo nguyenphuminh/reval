@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="./reval.js"></script>
+</head>
+<body>
+	<script>
+		class Counter {
+			constructor() {
+				this.states = {
+					counter: 1
+				};
+
+				this.el = this.render();
+
+				bind(this);
+			}
+
+			render() {
+				return el("h1", {}, [
+					this.states.counter,
+					
+					el("br"),
+
+					el("button", { 
+						onclick: () => {
+							this.states.counter++
+						}
+					}, "Increment"),
+
+					el("button", { 
+						onclick: () => {
+							this.states.counter--
+						}
+					}, "Decrement")
+				]);
+			}
+
+			onmount() {
+				console.log("Mounted!")
+			}
+
+			onunmount() {
+				console.log("Unmounted!");
+			}
+		}
+		const counter = new Counter();
+
+		mount(document.body, counter);
+	</script>
+</body>
+</html>
