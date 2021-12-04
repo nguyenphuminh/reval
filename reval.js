@@ -19,7 +19,7 @@ function el(tag, attr, body) {
 }
 
 function mount(target, child, before, replace) {
-	if (typeof child.render === "undefined" || child.render === null) {
+	if (typeof child.render !== "function") {
 		(!(typeof before === "undefined" || before === null)) ? 
 		(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
 		target.append(child);
@@ -34,7 +34,7 @@ function mount(target, child, before, replace) {
 }
 
 function unmount(target, child) {
-	if (typeof child.el === "undefined" || child.el === null) {
+	if (typeof child.render !== "function") {
 		target.removeChild(child);
 	} else {
 		target.removeChild(child.el);
@@ -67,6 +67,9 @@ function style(el, styles) {
 }
 
 function contains(parent, child) {
+	if (child.render && !child.el) {
+		child.el = child.render();
+	}
 	return parent !== child && parent.contains(child.el || child);
 }
 
