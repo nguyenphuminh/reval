@@ -150,3 +150,20 @@ const counter = new Counter();
 
 mount(document.body, counter);
 ```
+
+## More on Reval
+### Conditional rendering
+You can just simply use the ternary operator to do conditional rendering:
+```js
+	render() {
+		return 1 === 1 ? el("p", {}, "I'm fine") : el("p", {}, "I'm crazy");
+	}
+```
+
+### Lists
+Rendering a list of elements can be done easily with `map` and the spread operator.
+```js
+	render() {
+		return [1, 2, 3].map(item => el("p", {}, item));
+	}
+```
