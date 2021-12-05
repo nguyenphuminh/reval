@@ -1,6 +1,13 @@
-<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-orange.svg"/></a>
-<a href="https://bundlephobia.com/package/reval"><img src="https://badgen.net/bundlephobia/minzip/revaljs"/></a>
-<a href="https://www.npmjs.com/package/revaljs"><img src="https://img.shields.io/npm/v/revaljs.svg?sanitize=true" alt="Version"></a>
+<div>
+	<img src="./assets/logo.png"/>
+	<br/>
+	<b>An extremely lightweight (0.5kb), experimental, React-like front-end library </b>
+	<br/>
+	<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-orange.svg"/></a>
+	<a href="https://bundlephobia.com/package/reval"><img src="https://badgen.net/bundlephobia/minzip/revaljs"/></a>
+	<a href="https://www.npmjs.com/package/revaljs"><img src="https://img.shields.io/npm/v/revaljs.svg?sanitize=true" alt="Version"></a>
+</div>
+
 ## What is Reval.js?
 Reval.js is an experimental, React-like front-end library used to create small-scale web apps faster and better-structured. It is light-weight (0.5KB), has no virtual dom, easy to learn and setup. You can just pull it from a CDN without having to install any dependecies or runtime environment.
 
