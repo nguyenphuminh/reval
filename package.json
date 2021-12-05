@@ -1,6 +1,6 @@
 {
   "name": "revaljs",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "An extremely lightweight Javascript library to build web apps",
   "main": "reval.min.js",
   "scripts": {

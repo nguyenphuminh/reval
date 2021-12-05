@@ -45,7 +45,7 @@ function unmount(target, child) {
 
 function setState(component, states) {
 	Object.keys(states).forEach(key => {
-		if (typeof states[key] === "object" || typeof states[key] === "function") {
+		if (typeof states[key] === "object") {
 			Object.keys(states[key]).forEach(stateKey => {
 				component.states[key][stateKey] = states[key][stateKey];
 			});
