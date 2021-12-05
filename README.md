@@ -23,7 +23,7 @@ Reval.js is build under these philosophies:
 * Frameworks/libraries must be light-weight, with no BS dependencies - Reval weighs only 0.5KB minified + gzipped with no dependencies.
 * Small-scale apps should be fast, easy to build and maintain - Reval is fast for small-scale apps, easy to learn and use (you can learn Reval in 10 minutes).
 * Easy to setup and install - No runtime environment is required to run Reval apps, it is 100% optional.
-* Easy to switch to another libraries - It is easy to port a Reval codebase to a React-or-any-React-like-framework codebase.
+* Easy to switch to other libraries - It is easy to port a Reval codebase to a React-or-any-React-like-framework codebase.
 
 ## [How to use?](tutorial.md)
 
@@ -31,9 +31,6 @@ Reval.js is build under these philosophies:
 | Size               | Reval       | Vue         | React       | Angular           |
 | ------------------ | ----------- | ----------- | ----------- | ----------------- |
 | Minified & Gzipped | **0.5 KB**  | 33.4 KB     | 31.8KB      | 111KB             |
-
-## Is it ready?
-Kind of, but its performance and scalabiltiy have remained untested.
 
 ## Contributing!
 It would be lovely if you contribute to Reval.js, but please consider checking out [contribution guidelines](https://github.com/nguyenphuminh/reval/blob/master/.github/CONTRIBUTING.md) first.
