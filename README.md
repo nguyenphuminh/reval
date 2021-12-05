@@ -1,4 +1,5 @@
 <div align="center">
+	<br/>
 	<img src="./assets/logo.png"/>
 	<br/>
 	<div><b>An extremely lightweight (0.5kb), experimental, React-like front-end library </b></div>
