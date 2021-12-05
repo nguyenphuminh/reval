@@ -164,6 +164,8 @@ You can just simply use the ternary operator to do conditional rendering:
 Rendering a list of elements can be done easily with `map` and the spread operator.
 ```js
 	render() {
-		return [1, 2, 3].map(item => el("p", {}, item));
+		return el("ul", {}, [
+			...[1, 2, 3].map(item => el("li", {}, item))
+		]);
 	}
 ```
