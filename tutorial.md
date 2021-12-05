@@ -49,6 +49,16 @@ You can also unmount that element:
 unmount(document.body, hello);
 ```
 
+You can mount the element before and element:
+```js
+mount(parent, child, before)
+```
+
+If you pass in `true` as the fourth argument, you can replace an element with an element in the parent node:
+```
+mount(parent, child, before, true)
+```
+
 ## Components
 Reval components all have a basic form like this:
 ```js
