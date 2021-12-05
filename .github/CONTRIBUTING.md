@@ -1,7 +1,7 @@
-Contributing to FreakC!
+Contributing to Reval!
 ======================
 
-Thanks for your interests in FreakC, if you want to contribute to the project, please consider looking at the following notes!
+Thanks for your interests in Reval, if you want to contribute to the project, please consider looking at the following notes!
 
 ## Language
 We would prefer English as the main language for contributing, but you can use Vietnamese! 
@@ -15,4 +15,4 @@ We would prefer English as the main language for contributing, but you can use V
 - Don't use any NSFW or weird contents in a pull request.
 
 
-That's all, thanks for your time with FreakC!
+That's all, thanks for your time with Reval!
