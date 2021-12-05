@@ -3,7 +3,7 @@
 	<br/>
 	<div><b>An extremely lightweight (0.5kb), experimental, React-like front-end library </b></div>
 	<br/>
-	<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-yellow.svg"/></a>
+	<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-orange.svg"/></a>
 	<a href="https://bundlephobia.com/package/reval"><img src="https://badgen.net/bundlephobia/minzip/revaljs"/></a>
 	<a href="https://www.npmjs.com/package/revaljs"><img src="https://img.shields.io/npm/v/revaljs.svg?sanitize=true" alt="Version"></a>
 	<a href="https://github.com/nguyenphuminh/reval/blob/master/.github/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
@@ -32,6 +32,9 @@ Reval.js is build under these philosophies:
 
 ## Is it ready?
 Kind of, but its performance and scalabiltiy have remained untested.
+
+## Contributing!
+It would be lovely if you contribute to Reval.js, but please consider checking out [contribution guidelines](https://github.com/nguyenphuminh/reval/blob/master/.github/CONTRIBUTING.md) first.
 
 ## Copyrights and license
 This project is licensed under the MIT license
