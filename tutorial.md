@@ -4,10 +4,16 @@ Add a `script` tag right into your HTML file:
 <script src="https://unpkg.com/revaljs"></script>
 ```
 
-Or install it through npm:
+Or if you want it to load faster, consider downloading the library from [our releases page](https://github.com/nguyenphuminh/reval/releases/tag/v0.6.0) and use it.
 
+Or install it through npm:
 ```
 npm i revaljs
+```
+
+And then import the required functions like this:
+```js
+const { el, mount, unmount, setState } = require("revaljs");
 ```
 
 ## Creating HTML elements in Reval
