@@ -25,6 +25,11 @@ Reval.js is build under these philosophies:
 * Easy to setup and install - No runtime environment is required to run Reval apps, it is 100% optional.
 * Easy to switch to other libraries - It is easy to port a Reval codebase to a React-or-any-React-like-framework codebase.
 
+## What does it have?
+* Functions to create/render HTML elements.
+* Components with states and lifecycle support.
+* Some utility functions.
+
 ## [How to use?](tutorial.md)
 
 ## Size comparison with other frameworks
