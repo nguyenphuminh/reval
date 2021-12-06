@@ -58,21 +58,6 @@ function setState(component, states) {
 	component.mountedTo.appendChild(component.el);
 }
 
-function attr(el, attrs) {
-	Object.keys(attrs).forEach(attrName => el.setAttribute(attrName, attrs[attrName]));
-}
-
-function style(el, styles) {
-	Object.keys(styles).forEach(styleName => el.setAttribute(styleName, styles[styleName]));
-}
-
-function contains(parent, child) {
-	if (child.render && !child.el) {
-		child.el = child.render();
-	}
-	return parent !== child && parent.contains(child.el || child);
-}
-
 if (typeof module === "object" && typeof module.exports === "object") {
-	module.exports = { el, mount, unmount, attr, style, contains, setState };
+	module.exports = { el, mount, unmount, setState };
 }
