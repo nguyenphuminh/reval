@@ -27,8 +27,7 @@ Reval.js is build under these philosophies:
 
 ## What does it have?
 * Functions to create/render HTML elements.
-* Components with states and lifecycle support.
-* Some utility functions.
+* Components with states and lifecycle events support.
 
 ## [How to use?](tutorial.md)
 
