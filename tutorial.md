@@ -103,22 +103,6 @@ There are 2 special methods in a component:
 	}
 ```
 
-## Utilities
-Assign attributes to an HTML element:
-```js
-attr(element, attributes<Object>)
-```
-
-Assign CSS styles to an HTML element:
-```js
-style(element, styles<Object>)
-```
-
-Check if a parent node contains a child node (or a component):
-```js
-contains(parent, child)
-```
-
 ## Creating a counter example!
 Basically, we will create a `Counter` component, set the `counter` state to `1`. `render()` should return an HTML element with a list of child nodes consists of the current value of the counter, a button for incrementing the counter, a button for decrementing the counter. We will use `setState` to change the value of `counter` and re-render the element. Finally, we will create an instance of `Counter` called `counter` and mount it to `document.body`.
 
