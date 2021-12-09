@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="./reval.min.js"></script>
+</head>
+<body>
+	<script>
+		class TodoList {
+			constructor() {
+				this.states = { todos: [] };
+			}
+
+			render() {
+				let input = "";
+
+				return el("div", {}, [
+					el("input", { oninput() { input = this.value }}),
+
+					el("button", { 
+						onclick: () => setState(this, { todos: [ ...this.states.todos, input ] }) 
+					} , "Add"),
+
+					el("ul", {}, this.states.todos.map(todo => el("li", {}, todo)))
+				]);
+			}
+		}
+		
+		const todoList = new TodoList();
+
+		mount(document.body, todoList);
+	</script>
+</body>
+</html>

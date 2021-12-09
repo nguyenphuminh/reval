@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="./reval.js"></script>
+</head>
+<body>
+	<script>
+		class TodoList {
+			constructor() {
+				this.states = { list: [] };
+			}
+
+			render() {
+				let itemName = "", itemQuantity = "";
+
+				return el("div", {}, [
+					el("h1", {}, "Shopping Cart Example"),
+
+					this.states.list.length === 0 ? el("span", {}, "- EMPTY CART -") : "",
+
+					el("ul", {}, this.states.list.map((item, index) => el("li", {}, [
+						el("span", {}, item.quantity + " "),
+						el("span", {}, [
+							el("span", {}, item.name),
+							(parseInt(item.quantity) > 1 ? el("span", {}, "(s) ") : " ")
+						]),
+						el("button", {
+							onclick: () => {
+								const newList = [...this.states.list];
+								
+								newList[index].quantity++;
+
+								setState(this, { list: [...newList] })
+							}
+						}, "Increase "),
+						el("button", {
+							onclick: () => {
+								const newList = [...this.states.list];
+								
+								newList.splice(index, 1);
+
+								console.log(newList);
+
+								setState(this, { list: [...newList] })
+							}
+						}, "Remove")
+					]))),
+
+					el("input", { 
+						placeholder: "Item's name",
+						type: "text",
+
+						oninput() { 
+							itemName = this.value; 
+						}
+					}),
+
+					el("input", { 
+						placeholder: "Item's quantity",
+						type: "number",
+
+						oninput() { 
+							itemQuantity = this.value
+						}
+					}),
+
+					el("button", { 
+						onclick: () => {
+							if (itemName !== "" && itemQuantity !== "") {
+								setState(this, { 
+									list: [ ...this.states.list, { quantity: itemQuantity, name: itemName } ]
+								})
+							}
+						}
+					} , "Add Item"),
+					
+				]);
+			}
+		}
+		
+		const todoList = new TodoList();
+
+		mount(document.body, todoList);
+	</script>
+</body>
+</html>
