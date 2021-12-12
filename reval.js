@@ -45,7 +45,7 @@ function unmount(target, child) {
 
 function setState(component, states) {
 	Object.keys(states).forEach(key => {
-		component.states[key] = Array.isArray(states[key]) ? [...states[key]] : typeof states[key] === "object" ? {...states[key]} : states[key];
+		component.states[key] = states[key];
 	})
 	component.mountedTo.removeChild(component.el);
 	component.el = component.render();
