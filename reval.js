@@ -5,15 +5,13 @@ function el(tag, attr, body) {
 		
 	Array.isArray(body) ? body.forEach(item => newEl.append(item)) : newEl.append(body);
 	
-	if (typeof attr === "object" && attr !== null) {
-		Object.keys(attr).forEach(attrName => {
-			if (typeof attr[attrName] === "function") {
-				newEl[attrName] = attr[attrName];
-			} else {
-				newEl.setAttribute(attrName, attr[attrName])
-			}
-		});
-	}
+	Object.keys(attr).forEach(attrName => {
+		if (typeof attr[attrName] === "function") {
+			newEl[attrName] = attr[attrName];
+		} else {
+			newEl.setAttribute(attrName, attr[attrName])
+		}
+	});
 
 	return newEl;
 }
