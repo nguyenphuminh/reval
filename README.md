@@ -2,7 +2,7 @@
 	<br/>
 	<img src="./assets/logo.png"/>
 	<br/>
-	<div><b>An extremely lightweight (0.5kb), experimental, React-like front-end library </b></div>
+	<div><b>An extremely lightweight (0.5kb), experimental, front-end library </b></div>
 	<br/>
 	<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-orange.svg"/></a>
 	<a href="https://bundlephobia.com/package/revaljs"><img src="https://badgen.net/bundlephobia/minzip/revaljs"/></a>
@@ -14,7 +14,9 @@
 <br/>
 
 ## What is Reval.js?
-Reval.js is just a fun experimental project built to be one of the lightest front end library out there.
+Reval.js is just a fun experimental project built to be one of the lightest front end library out there. 
+
+It is not scalable and would get slow pretty fast with big data sets. When you are creating a small app in vanilla Javascript, you are likely going to re-create Reval.js.
 
 ## What does it have?
 * Functions to create/render HTML elements.
@@ -24,12 +26,12 @@ Reval.js is just a fun experimental project built to be one of the lightest fron
 ## What doesn't it have?
 * Scalability and speed for any big, practical apps.
 
-## [How to use?](tutorial.md)
+## [Tutorial](tutorial.md)
 
 ## Size comparison with other frameworks
 | Size               | Reval       | Vue         | React       | Angular           |
 | ------------------ | ----------- | ----------- | ----------- | ----------------- |
-| Minified & Gzipped | **0.5 KB**  | 33.4 KB     | 31.8KB      | 111KB             |
+| Minified & Gzipped | **0.4 KB**  | 33.4 KB     | 31.8KB      | 111KB             |
 
 ## Contributing!
 Want to help make it better? Please kindly check out the [contribution guidelines](https://github.com/nguyenphuminh/reval/blob/master/.github/CONTRIBUTING.md) first.
