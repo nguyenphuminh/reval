@@ -14,27 +14,18 @@
 <br/>
 
 ## What is Reval.js?
-Reval.js is just a fun experimental project built to be one of the lightest front end library out there. 
-
-It is not scalable and would get slow pretty fast with big data sets. When you are creating a small app in vanilla Javascript, you are likely going to re-create Reval.js.
+Reval.js is just a fun experimental project built to be one of the lightest front end library out there, don't use it for anything useful.
 
 ## What does it have?
 * Functions to create/render HTML elements.
 * Components with states and lifecycle events support.
-* Light size.
+
+Yeah that's it.
 
 ## What doesn't it have?
 * Scalability and speed for any big, practical apps.
 
 ## [Tutorial](tutorial.md)
-
-## Size comparison with other frameworks
-| Size               | Reval       | Vue         | React       | Angular           |
-| ------------------ | ----------- | ----------- | ----------- | ----------------- |
-| Minified & Gzipped | **0.4 KB**  | 33.4 KB     | 31.8KB      | 111KB             |
-
-## Contributing!
-Want to help make it better? Please kindly check out the [contribution guidelines](https://github.com/nguyenphuminh/reval/blob/master/.github/CONTRIBUTING.md) first.
 
 ## Copyrights and license
 This project is licensed under the MIT license
