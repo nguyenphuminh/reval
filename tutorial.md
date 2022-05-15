@@ -1,22 +1,35 @@
-## Install
-Add a `script` tag right into your HTML file:
-```
+## Get started
+
+There are many ways to add Reval into your project.
+
+### From browsers
+
+The easiest option is to pull it from a CDN:
+```html
 <script src="https://unpkg.com/revaljs"></script>
 ```
 
-Or if you want it to load faster, consider downloading the library from [our releases page](https://github.com/nguyenphuminh/reval/releases/tag/v0.6.0) and use it.
+Or for better load time, consider downloading the library from [our releases page](https://github.com/nguyenphuminh/reval/releases/tag/v0.6.0).
 
-Or install it through npm:
+And then get the necessary functions:
+```js
+const { el, mount, unmount, setState } = Reval;
+```
+
+### From npm
+
+You can also just install it through `npm`:
 ```
 npm i revaljs
 ```
 
-And then import the required functions like this:
+And then get the required functions like this:
 ```js
 const { el, mount, unmount, setState } = require("revaljs");
 ```
 
 ## Creating HTML elements in Reval
+
 There is a handy dandy function called `el` to create HTML elements:
 
 Syntax: `el(tagName, props, childNodes)`
@@ -42,8 +55,10 @@ Note that in `props`, you can also assign event handlers, for example:
 const hello = el("p", { id: "Hello": onclick: () => alert("You clicked me!") }, el("br"));
 ```
 
+
 ## Mount and unmount
-You can mount an HTML element or a Reval component to another HTML element:
+
+You can mount an HTML element or a Reval component to another HTML element (container):
 ```js
 mount(document.body, hello);
 ```
@@ -55,17 +70,19 @@ You can also unmount that element:
 unmount(document.body, hello);
 ```
 
-You can mount the element before and element:
+You can mount the element before a specified element:
 ```js
-mount(parent, child, before)
+mount(parent, child, before);
 ```
 
-If you pass in `true` as the fourth argument, you can replace an element with an element in the parent node:
+To re-render an element, pass in `true` as the fourth argument.
+```js
+mount(parent, child, before, true);
 ```
-mount(parent, child, before, true)
-```
+
 
 ## Components
+
 Reval components all have a basic form like this:
 ```js
 class ComponentName {
@@ -78,26 +95,36 @@ class ComponentName {
 const componentName = new ComponentName();
 
 // mount the component
-mount(parent, componentName)
+mount(parent, componentName);
 // unmount the component
-unmount(parent, componentName)
+unmount(parent, componentName);
 ```
 
-## States
-You can create states using the `states` prop:
+
+## State
+
+You can manage components' states using the `states` prop:
 ```js
 this.states = {}
 ```
 
 and change the state with `setState`:
 ```js
-setState(component, { state: value })
+setState(component, { state: value });
 ```
 
-If you don't know what states are, basically, the HTML element got re-rendered every time states are changed.
+The HTML element got re-rendered every time states are changed.
+
+### Scope
+
+Be careful when you pass in handlers for events, because if you use arrow functions, the scope will be inside the component's class, but if you use normal functions, the scope will be the HTML element itself with `this` pointed to the element.
+
 
 ## Component lifecycle
-There are 2 special methods in a component:
+
+There are three lifecycle events in a Reval's component - `onmount` - when the component is mounted to a container, `onunmount` - when the component is unmounted from a container, and `onupdate` - when a component is updated.
+
+You can pass in handlers for each events as methods of the component's class:
 
 ```js
 	onmount() {
@@ -107,9 +134,14 @@ There are 2 special methods in a component:
 	onunmount() {
 		// Gets triggered when component is unmounted
 	}
+
+	onupdate() {
+		// Gets triggered every time the component is updated (when the state is changed)
+	}
 ```
 
 ## Creating a counter example!
+
 Basically, we will create a `Counter` component, set the `counter` state to `1`. `render()` should return an HTML element with a list of child nodes consists of the current value of the counter, a button for incrementing the counter, a button for decrementing the counter. We will use `setState` to change the value of `counter` and re-render the element. Finally, we will create an instance of `Counter` called `counter` and mount it to `document.body`.
 
 ```js
@@ -142,8 +174,10 @@ mount(document.body, counter);
 ```
 
 ## More on Reval
+
 ### Conditional rendering
-You can just simply use the ternary operator to do conditional rendering:
+
+You can just use the ternary operator to do conditional rendering:
 ```js
 	render() {
 		return 1 === 1 ? el("p", {}, "I'm fine") : el("p", {}, "I'm crazy");
@@ -151,7 +185,9 @@ You can just simply use the ternary operator to do conditional rendering:
 ```
 
 ### Lists
+
 Rendering a list of elements can be done easily with `map` and the spread operator.
+
 ```js
 	render() {
 		return el("ul", {}, [

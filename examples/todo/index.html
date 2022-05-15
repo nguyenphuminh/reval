@@ -2,10 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<script src="./reval.min.js"></script>
+	<script src="./reval.js"></script>
 </head>
 <body>
 	<script>
+		const { el, setState, mount, unmount } = Reval;
+
 		class TodoList {
 			constructor() {
 				this.states = { todos: [] };

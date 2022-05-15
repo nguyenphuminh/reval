@@ -8,6 +8,8 @@
 
 <body>
 	<script>
+		const { el, setState, mount, unmount } = Reval;
+
 		class Counter {
 			constructor() {
 				this.states = { counter: 1 };
@@ -29,6 +31,7 @@
 				]);
 			}
 		}
+
 		const counter = new Counter();
 
 		mount(document.body, counter);
