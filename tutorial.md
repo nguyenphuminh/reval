@@ -37,7 +37,7 @@ Syntax: `el(tagName, props, childNodes)`
 Example:
 ```js
 const hello = el("p", { id: "Hello" }, [
-	"Hello, World!" // You can use normal text
+	"Hello, World!", // You can use normal text
 	el("br")
 ]);
 ```
