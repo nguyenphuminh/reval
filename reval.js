@@ -1,19 +1,19 @@
 "use strict";
 
-const Reval = {
+let Reval = {
 	el(tag, attr, body) {
-		const newEl = document.createElement(tag);
+		let newEl = document.createElement(tag);
 			
 		Array.isArray(body) ? body.forEach(item => newEl.append(item)) : newEl.append(body);
 		
 		if (typeof attr === "object" && attr !== null) {
-			Object.keys(attr).forEach(attrName => {
+			for (let attrName in attr) {
 				if (typeof attr[attrName] === "function") {
 					newEl[attrName] = attr[attrName];
 				} else {
-					newEl.setAttribute(attrName, attr[attrName])
+					newEl.setAttribute(attrName, attr[attrName]);
 				}
-			});
+			}
 		}
 
 		return newEl;
@@ -21,12 +21,12 @@ const Reval = {
 
 	mount(target, child, before, replace) {
 		if (typeof child.render !== "function") {
-			(!(typeof before === "undefined" || before === null)) ? 
+			before ? 
 			(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
 			target.append(child);
 		} else {
 			child.el = child.render();
-			(!(typeof before === "undefined" || before === null)) ?
+			before ?
 			(replace ? target.replaceChild(child.el, before) : target.insertBefore(child.el, before)) :
 			target.append(child.el);
 
@@ -49,9 +49,9 @@ const Reval = {
 	},
 
 	setState(component, states) {
-		Object.keys(states).forEach(key => {
+		for (let key in states) {
 			component.states[key] = states[key];
-		});
+		}
 
 		component.mountedTo.removeChild(component.el);
 		component.el = component.render();
