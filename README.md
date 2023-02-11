@@ -14,20 +14,33 @@
 <br/>
 
 ## What is Reval.js?
-Reval.js is just a fun experimental project built to be one of the lightest front end library out there, don't use it for anything useful.
+
+Reval.js is just a fun experimental project built to be one of the lightest front end libraries out there, don't use it for anything useful.
 
 ## What does it have?
+
 * Functions to create/render HTML elements.
 * Components with states and lifecycle events support.
 
 Yeah that's it.
 
 ## What doesn't it have?
+
 * Scalability and speed for any big, practical apps.
+
+## Comparison
+
+Just for fun, let's have a comparison in size with other light-weight libraries.
+
+* Alpine.js: 14kb gzipped.
+* Petite-Vue: 6.9kb gzipped.
+* Lucia.js: 2kb gzipped.
+* Reval.js: 0.4kb gzipped.
 
 ## [Tutorial](tutorial.md)
 
 ## Copyrights and license
+
 This project is licensed under the MIT license
 
 Copyrights © 2021 Nguyen Phu Minh
