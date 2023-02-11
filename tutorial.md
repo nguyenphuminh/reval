@@ -195,3 +195,13 @@ Rendering a list of elements can be done easily with `map` and the spread operat
 		]);
 	}
 ```
+
+This would generate:
+
+```html
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+```
