@@ -1,6 +1,6 @@
 {
   "name": "revaljs",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "A front-end library created just for the sake of being light",
   "main": "reval.min.js",
   "scripts": {

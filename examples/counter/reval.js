@@ -1,4 +1,4 @@
-"use strict";
+let a = item => typeof item === "function";
 
 let Reval = {
 	el(tag, attr, body) {
@@ -8,7 +8,7 @@ let Reval = {
 		
 		if (typeof attr === "object" && attr !== null) {
 			for (let attrName in attr) {
-				if (typeof attr[attrName] === "function") {
+				if (a(attr[attrName])) {
 					newEl[attrName] = attr[attrName];
 				} else {
 					newEl.setAttribute(attrName, attr[attrName]);
@@ -20,11 +20,7 @@ let Reval = {
 	},
 
 	mount(target, child, before, replace) {
-		if (typeof child.render !== "function") {
-			before ? 
-			(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
-			target.append(child);
-		} else {
+		if (a(child.render)) {
 			child.e = child.render();
 			before ?
 			(replace ? target.replaceChild(child.e, before) : target.insertBefore(child.e, before)) :
@@ -32,32 +28,34 @@ let Reval = {
 
 			child.m = target;
 
-			typeof child.onmount === "function" && child.onmount();
+			a(child.onmount) && child.onmount();
+		} else {
+			before ? 
+			(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
+			target.append(child);
 		}
 	},
 
 	unmount(target, child) {
-		if (typeof child.render !== "function") {
-			target.removeChild(child);
-		} else {
+		if (a(child.render)) {
 			target.removeChild(child.e);
 
 			child.m = null;
 			
-			typeof child.onunmount === "function" && child.onunmount();
+			a(child.onunmount) && child.onunmount();
+		} else {
+			target.removeChild(child);
 		}
 	},
 
 	setState(component, states) {
-		for (let key in states) {
-			component.states[key] = states[key];
-		}
+		Object.assign(component.states, states);
 
 		component.m.removeChild(component.e);
 		component.e = component.render();
-		component.m.appendChild(component.e);
+		component.m.append(component.e);
 
-		typeof component.onupdate === "function" && component.onupdate();
+		a(component.onupdate) && component.onupdate();
 	}
 };
 

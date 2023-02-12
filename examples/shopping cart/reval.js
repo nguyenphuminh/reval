@@ -1,4 +1,4 @@
-"use strict";
+let a = item => typeof item === "function";
 
 let Reval = {
 	el(tag, attr, body) {
@@ -8,7 +8,7 @@ let Reval = {
 		
 		if (typeof attr === "object" && attr !== null) {
 			for (let attrName in attr) {
-				if (typeof attr[attrName] === "function") {
+				if (a(attr[attrName])) {
 					newEl[attrName] = attr[attrName];
 				} else {
 					newEl.setAttribute(attrName, attr[attrName]);
@@ -20,44 +20,42 @@ let Reval = {
 	},
 
 	mount(target, child, before, replace) {
-		if (typeof child.render !== "function") {
+		if (a(child.render)) {
+			child.e = child.render();
+			before ?
+			(replace ? target.replaceChild(child.e, before) : target.insertBefore(child.e, before)) :
+			target.append(child.e);
+
+			child.m = target;
+
+			a(child.onmount) && child.onmount();
+		} else {
 			before ? 
 			(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
 			target.append(child);
-		} else {
-			child.el = child.render();
-			before ?
-			(replace ? target.replaceChild(child.el, before) : target.insertBefore(child.el, before)) :
-			target.append(child.el);
-
-			child.mountedTo = target;
-
-			typeof child.onmount === "function" && child.onmount();
 		}
 	},
 
 	unmount(target, child) {
-		if (typeof child.render !== "function") {
-			target.removeChild(child);
-		} else {
-			target.removeChild(child.el);
+		if (a(child.render)) {
+			target.removeChild(child.e);
 
-			child.mountedTo = null;
+			child.m = null;
 			
-			typeof child.onunmount === "function" && child.onunmount();
+			a(child.onunmount) && child.onunmount();
+		} else {
+			target.removeChild(child);
 		}
 	},
 
 	setState(component, states) {
-		for (let key in states) {
-			component.states[key] = states[key];
-		}
+		Object.assign(component.states, states);
 
-		component.mountedTo.removeChild(component.el);
-		component.el = component.render();
-		component.mountedTo.appendChild(component.el);
+		component.m.removeChild(component.e);
+		component.e = component.render();
+		component.m.append(component.e);
 
-		typeof component.onupdate === "function" && component.onupdate();
+		a(component.onupdate) && component.onupdate();
 	}
 };
 
