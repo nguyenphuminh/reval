@@ -25,12 +25,12 @@ let Reval = {
 			(replace ? target.replaceChild(child, before) : target.insertBefore(child, before)) :
 			target.append(child);
 		} else {
-			child.el = child.render();
+			child.e = child.render();
 			before ?
-			(replace ? target.replaceChild(child.el, before) : target.insertBefore(child.el, before)) :
-			target.append(child.el);
+			(replace ? target.replaceChild(child.e, before) : target.insertBefore(child.e, before)) :
+			target.append(child.e);
 
-			child.mountedTo = target;
+			child.m = target;
 
 			typeof child.onmount === "function" && child.onmount();
 		}
@@ -40,9 +40,9 @@ let Reval = {
 		if (typeof child.render !== "function") {
 			target.removeChild(child);
 		} else {
-			target.removeChild(child.el);
+			target.removeChild(child.e);
 
-			child.mountedTo = null;
+			child.m = null;
 			
 			typeof child.onunmount === "function" && child.onunmount();
 		}
@@ -53,9 +53,9 @@ let Reval = {
 			component.states[key] = states[key];
 		}
 
-		component.mountedTo.removeChild(component.el);
-		component.el = component.render();
-		component.mountedTo.appendChild(component.el);
+		component.m.removeChild(component.e);
+		component.e = component.render();
+		component.m.appendChild(component.e);
 
 		typeof component.onupdate === "function" && component.onupdate();
 	}
