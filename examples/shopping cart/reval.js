@@ -59,6 +59,6 @@ let Reval = {
 	}
 };
 
-if (typeof module === "object" && typeof module.exports === "object") {
+if (typeof module?.exports === "object") {
 	module.exports = Reval;
 }
