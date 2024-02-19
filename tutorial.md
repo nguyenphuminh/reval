@@ -9,7 +9,7 @@ The easiest option is to pull it from a CDN:
 <script src="https://unpkg.com/revaljs"></script>
 ```
 
-Or for better load time, consider downloading the library from [our releases page](https://github.com/nguyenphuminh/reval/releases/tag/v0.6.0).
+Or for better load time, consider downloading the library from [our releases page](https://github.com/nguyenphuminh/reval/releases/).
 
 And then get the necessary functions:
 ```js
@@ -63,7 +63,7 @@ You can mount an HTML element or a Reval component to another HTML element (cont
 mount(document.body, hello);
 ```
 
-It will mount `hello` to `document.body`, so you will se `Hello, World!` rendered on the browser.
+It will mount `hello` to `document.body`, so you will see `Hello, World!` rendered on the browser.
 
 You can also unmount that element:
 ```js
