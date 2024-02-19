@@ -8,16 +8,17 @@
 	<script>
 		const { el, setState, mount, unmount } = Reval;
 		
-		class TodoList {
-			constructor() {
+		class ShoppingCart {
+			constructor(props) {
 				this.states = { list: [] };
+				this.props = props;
 			}
 
 			render() {
 				let itemName = "", itemQuantity = "";
 
 				return el("div", {}, [
-					el("h1", {}, "Shopping Cart Example"),
+					el("h1", {}, `${this.props.user}'s Shopping Cart`),
 
 					this.states.list.length === 0 ? el("span", {}, "- EMPTY CART -") : "",
 
@@ -33,16 +34,29 @@
 								
 								newList[index].quantity++;
 
-								setState(this, { list: [...newList] })
+								setState(this, { list: [...newList] });
 							}
-						}, "Increase "),
+						}, "Increase"),
+						el("button", {
+							onclick: () => {
+								let newList = [...this.states.list];
+								
+								newList[index].quantity--;
+
+								if (newList[index].quantity <= 0) {
+									newList = this.states.list.filter((item, _index) => _index !== index);
+								}
+
+								setState(this, { list: [...newList] });
+							}
+						}, "Decrease"),
 						el("button", {
 							onclick: () => {
 								const newList = [...this.states.list];
 								
 								newList.splice(index, 1);
 
-								setState(this, { list: [...newList] })
+								setState(this, { list: [...newList] });
 							}
 						}, "Remove")
 					]))),
@@ -59,9 +73,10 @@
 					el("input", { 
 						placeholder: "Item's quantity",
 						type: "number",
+						min: "1",
 
 						oninput() { 
-							itemQuantity = this.value
+							itemQuantity = this.value;
 						}
 					}),
 
@@ -70,7 +85,7 @@
 							if (itemName !== "" && itemQuantity !== "") {
 								setState(this, { 
 									list: [ ...this.states.list, { quantity: itemQuantity, name: itemName } ]
-								})
+								});
 							}
 						}
 					} , "Add Item"),
@@ -79,9 +94,9 @@
 			}
 		}
 		
-		const todoList = new TodoList();
+		const shoppingCart = new ShoppingCart({ user: "Bob" });
 
-		mount(document.body, todoList);
+		mount(document.body, shoppingCart);
 	</script>
 </body>
 </html>
