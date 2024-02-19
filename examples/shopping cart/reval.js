@@ -1,12 +1,12 @@
-let a = item => typeof item === "function";
+let a = item => typeof item == "function";
 
 let Reval = {
 	el(tag, attr, body) {
 		let newEl = document.createElement(tag);
-			
-		Array.isArray(body) ? body.forEach(item => newEl.append(item)) : newEl.append(body);
+
+		Array.isArray(body) ? newEl.append(...body) : newEl.append(body);
 		
-		if (typeof attr === "object" && attr !== null) {
+		if (typeof attr == "object") {
 			for (let attrName in attr) {
 				if (a(attr[attrName])) {
 					newEl[attrName] = attr[attrName];
@@ -59,6 +59,6 @@ let Reval = {
 	}
 };
 
-if (typeof module?.exports === "object") {
+if (typeof module == "object") {
 	module.exports = Reval;
 }
