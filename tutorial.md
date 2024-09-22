@@ -122,7 +122,7 @@ Be careful when you pass in handlers for events, because if you use arrow functi
 
 ## Component lifecycle
 
-There are three lifecycle events in a Reval's component - `onmount` - when the component is mounted to a container, `onunmount` - when the component is unmounted from a container, and `onupdate` - when a component is updated.
+There are three lifecycle events in a Reval's component - `onmount` - when the component is mounted to a container, `onunmount` - when the component is unmounted from a container, and `onremount` - when a component is remounted to a different container.
 
 You can pass in handlers for each events as methods of the component's class:
 
@@ -135,8 +135,8 @@ You can pass in handlers for each events as methods of the component's class:
 		// Gets triggered when component is unmounted
 	}
 
-	onupdate() {
-		// Gets triggered every time the component is updated (when the state is changed)
+	onremount() {
+		// Gets triggered when component is remounted
 	}
 ```
 
@@ -187,7 +187,6 @@ You can just use the ternary operator to do conditional rendering:
 ### Lists
 
 Rendering a list of elements can be done easily with `map` and the spread operator.
-
 ```js
 	render() {
 		return el("ul", {}, [
@@ -197,7 +196,6 @@ Rendering a list of elements can be done easily with `map` and the spread operat
 ```
 
 This would generate:
-
 ```html
 <ul>
 	<li>1</li>

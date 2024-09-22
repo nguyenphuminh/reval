@@ -1,7 +1,7 @@
 {
   "name": "revaljs",
-  "version": "0.15.0",
-  "description": "A front-end library created just for the sake of being light",
+  "version": "0.16.0",
+  "description": "React-based front-end library code golf",
   "main": "reval.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
