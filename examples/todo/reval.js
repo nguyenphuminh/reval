@@ -1,20 +1,29 @@
-let
 // Utility to check if one is a function
 // It is named "a" to reduce size because a minifier would keep the name of a global variable
-a = item => typeof item == "function",
+let a = item => typeof item == "function";
 
 // Utility to check if one is a component
-c = item => item && a(item.render),
+let c = item => item && a(item.render);
 
 // Utility to get the html element of a component/element
-e = item => c(item) ? item.e : item;
+let e = item => c(item) ? item.e : item;
 
 // Utility to mount a component/element to another component/element
-m = (target, child, before, replace) => {
+let m = (target, child, before, replace) => {
 	// Check if target is a component, we would have to use target.e
 	let newTarget = e(target);
 	// Check if before is a component, we would have to use before.e
 	let newBefore = e(before);
+
+	// A handy dandy closure to mount child to target
+	let mount = (newChild) =>
+		newBefore ?
+		(
+			replace ?
+			newTarget.replaceChild(newChild, newBefore) :
+			newTarget.insertBefore(newChild, newBefore)
+		) :
+		newTarget.append(newChild);
 
 	// If child is a component
 	if (c(child)) {
@@ -24,35 +33,30 @@ m = (target, child, before, replace) => {
 		// Re-render
 		child.e = child.render();
 
-		// Decide to append, replace or insert into the parent
-		newBefore ?
-		(replace ? newTarget.replaceChild(child.e, newBefore) : newTarget.insertBefore(child.e, newBefore)) :
-		newTarget.append(child.e);
+		// Mount the computed element
+		mount(child.e);
 
 		// Update parent
 		child.m = newTarget;
-		// Update before
 
 		// Call onremount if there is any
 		a(child.onremount) && child.onremount();
 		// Call onmount event handler if there is any
 		a(child.onmount) && child.onmount();
 	}
-	// If not
+	// If not, just mount directly regardless whatever the value is
 	else {
-		newBefore ? 
-		(replace ? newTarget.replaceChild(child, newBefore) : newTarget.insertBefore(child, newBefore)) :
-		newTarget.append(child);
+		mount(child);
 	}
-},
+}
 
 // The main lib
-Reval = {
+let Reval = {
 	// Mounts an element/component to another element/component
 	mount: m,
 
 	unmount(target, child) {
-		// Check if target is a component, we would have to use target.e
+		// Get the HTML element from the component/element
 		let newTarget = e(target);
 
 		// If child is a component
