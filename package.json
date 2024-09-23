@@ -1,6 +1,6 @@
 {
   "name": "revaljs",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "React-based front-end library code golf",
   "main": "reval.min.js",
   "scripts": {

@@ -27,8 +27,10 @@ let m = (target, child, before, replace) => {
 
 	// If child is a component
 	if (c(child)) {
+		let parent = child.m;
+
 		// If component is already mounted, remove from old parent
-		child.m && child.m.removeChild(child.e);
+		parent && child.m.removeChild(child.e);
 		
 		// Re-render
 		child.e = child.render();
@@ -39,9 +41,11 @@ let m = (target, child, before, replace) => {
 		// Update parent
 		child.m = newTarget;
 
-		// Call onremount if there is any
-		a(child.onremount) && child.onremount();
-		// Call onmount event handler if there is any
+		// Event handlers
+		parent ?
+		// Call onremount if component is remounted and there is a handler for it
+		a(child.onremount) && child.onremount() :
+		// Call onmount if component is remounted and there is a handler for it
 		a(child.onmount) && child.onmount();
 	}
 	// If not, just mount directly regardless whatever the value is

@@ -34,7 +34,7 @@ Just for fun, let's have a comparison in size with other light-weight libraries.
 * Alpine.js: 14 kb gzipped.
 * Petite-Vue: 6.9 kb gzipped.
 * Lucia.js: 2 kb gzipped.
-* Reval.js: 0.37 kb gzipped.
+* Reval.js: 0.4 kb gzipped.
 
 ## [Tutorial](tutorial.md)
 

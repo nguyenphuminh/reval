@@ -136,7 +136,8 @@ You can pass in handlers for each events as methods of the component's class:
 	}
 
 	onremount() {
-		// Gets triggered when component is remounted
+		// Gets triggered when component is remounted to another parent
+		// If component is unmounted then mounted, this will not be run
 	}
 ```
 
