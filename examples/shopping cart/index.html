@@ -10,7 +10,7 @@
 		
 		class ShoppingCart {
 			constructor(props) {
-				this.states = { list: [] };
+				this.state = { list: [] };
 				this.props = props;
 			}
 
@@ -20,9 +20,9 @@
 				return el("div", {}, [
 					el("h1", {}, `${this.props.user}'s Shopping Cart`),
 
-					this.states.list.length === 0 ? el("span", {}, "- EMPTY CART -") : "",
+					this.state.list.length === 0 ? el("span", {}, "- EMPTY CART -") : "",
 
-					el("ul", {}, this.states.list.map((item, index) => el("li", {}, [
+					el("ul", {}, this.state.list.map((item, index) => el("li", {}, [
 						el("span", {}, item.quantity + " "),
 						el("span", {}, [
 							el("span", {}, item.name),
@@ -30,7 +30,7 @@
 						]),
 						el("button", {
 							onclick: () => {
-								const newList = [...this.states.list];
+								const newList = [...this.state.list];
 								
 								newList[index].quantity++;
 
@@ -39,12 +39,12 @@
 						}, "Increase"),
 						el("button", {
 							onclick: () => {
-								let newList = [...this.states.list];
+								let newList = [...this.state.list];
 								
 								newList[index].quantity--;
 
 								if (newList[index].quantity <= 0) {
-									newList = this.states.list.filter((item, _index) => _index !== index);
+									newList = this.state.list.filter((item, _index) => _index !== index);
 								}
 
 								setState(this, { list: [...newList] });
@@ -52,7 +52,7 @@
 						}, "Decrease"),
 						el("button", {
 							onclick: () => {
-								const newList = [...this.states.list];
+								const newList = [...this.state.list];
 								
 								newList.splice(index, 1);
 
@@ -84,7 +84,7 @@
 						onclick: () => {
 							if (itemName !== "" && itemQuantity !== "") {
 								setState(this, { 
-									list: [ ...this.states.list, { quantity: itemQuantity, name: itemName } ]
+									list: [ ...this.state.list, { quantity: itemQuantity, name: itemName } ]
 								});
 							}
 						}

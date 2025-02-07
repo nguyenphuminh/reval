@@ -10,7 +10,7 @@
 
 		class TodoList {
 			constructor() {
-				this.states = { todos: [] };
+				this.state = { todos: [] };
 			}
 
 			render() {
@@ -20,10 +20,10 @@
 					el("input", { oninput() { input = this.value }}),
 
 					el("button", { 
-						onclick: () => setState(this, { todos: [ ...this.states.todos, input ] }) 
+						onclick: () => setState(this, { todos: [ ...this.state.todos, input ] }) 
 					} , "Add"),
 
-					el("ul", {}, this.states.todos.map(todo => el("li", {}, todo)))
+					el("ul", {}, this.state.todos.map(todo => el("li", {}, todo)))
 				]);
 			}
 		}

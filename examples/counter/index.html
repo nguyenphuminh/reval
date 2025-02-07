@@ -12,23 +12,35 @@
 
 		class Counter {
 			constructor() {
-				this.states = { counter: 1 };
+				this.state = { counter: 1 };
 			}
 
 			render() {
 				return el("h1", { class: "Gucci" }, [
-					this.states.counter,
+					this.state.counter,
 
 					el("br"),
 
 					el("button", {
-						onclick: () => setState(this, { counter: this.states.counter + 1 })
+						onclick: () => setState(this, { counter: this.state.counter + 1 })
 					}, "Increment"),
 
 					el("button", {
-						onclick: () => setState(this, { counter: this.states.counter - 1 })
+						onclick: () => setState(this, { counter: this.state.counter - 1 })
 					}, "Decrement")
 				]);
+			}
+
+			onmount() {
+				console.log("Mounted");
+			}
+
+			onremount() {
+				console.log("Remounted");
+			}
+
+			onunmount() {
+				console.log("Unmounted");
 			}
 		}
 

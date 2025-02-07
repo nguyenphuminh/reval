@@ -19,7 +19,7 @@ Reval.js is just a fun experimental project built to be one of the lightest fron
 ## What does it have?
 
 * Functions to create/render HTML elements.
-* Components with states and lifecycle events support.
+* Components with state and lifecycle events support.
 
 Yeah that's it.
 
@@ -42,4 +42,4 @@ Just for fun, let's have a comparison in size with other light-weight libraries.
 
 This project is licensed under the MIT license
 
-Copyrights © 2021 Nguyen Phu Minh
+Copyrights © 2025 Nguyen Phu Minh

@@ -14,6 +14,8 @@ let m = (target, child, before, replace) => {
 	let newTarget = e(target);
 	// Check if before is a component, we would have to use before.e
 	let newBefore = e(before);
+	// This will be used as a lifecycle event handler
+	let handler;
 
 	// A handy dandy closure to mount child to target
 	let mount = (newChild) =>
@@ -26,32 +28,22 @@ let m = (target, child, before, replace) => {
 		newTarget.append(newChild);
 
 	// If child is a component
-	if (c(child)) {
-		let parent = child.m;
-
-		// If component is already mounted, remove from old parent
-		parent && child.m.removeChild(child.e);
-		
+	c(child) ?
+	(
+		// Get appropriate handler and remove element from old parent if the parent exists
+		(handler = child.m ? (child.m.removeChild(child.e), child.onremount) : child.onmount),
+	
 		// Re-render
-		child.e = child.render();
-
-		// Mount the computed element
-		mount(child.e);
+		mount(child.e = child.render()),
 
 		// Update parent
-		child.m = newTarget;
+		child.m = newTarget,
 
-		// Event handlers
-		parent ?
-		// Call onremount if component is remounted and there is a handler for it
-		a(child.onremount) && child.onremount() :
-		// Call onmount if component is remounted and there is a handler for it
-		a(child.onmount) && child.onmount();
-	}
+		// Call handler
+		a(handler) && handler()
+	)
 	// If not, just mount directly regardless whatever the value is
-	else {
-		mount(child);
-	}
+	: mount(child);
 }
 
 // The main lib
@@ -63,48 +55,29 @@ let Reval = {
 		// Get the HTML element from the component/element
 		let newTarget = e(target);
 
-		// If child is a component
-		if (c(child)) {
-			newTarget.removeChild(child.e);
-
-			delete child.m;
-			
-			a(child.onunmount) && child.onunmount();
-		} else {
-			newTarget.removeChild(child);
-		}
+		// Unmount based on whether child is a component or an element
+		(c(child)) ? (newTarget.removeChild(child.e), delete child.m, a(child.onunmount) && child.onunmount()) : newTarget.removeChild(child);
 	},
 
-	// Utility to update from 
-	setState(component, states) {
-		Object.assign(component.states, states);
-
+	// Utility to re-render component with new state
+	setState(component, state) {
+		// Update state
+		Object.assign(component.state, state);
+		// Get old element
 		let oldEl = component.e;
-		let newEl = component.render();
-
-		component.m.replaceChild(newEl, oldEl);
-		component.e = newEl;
+		// Compute the new element and replace with the old one
+		component.m.replaceChild((component.e = component.render()), oldEl);
 	},
 
 	// Utility to create an html element
-	el(tag, attr, body) {
+	el(tag, attr = {}, body) {
 		let newEl = document.createElement(tag);
-		let newBody = Array.isArray(body) ? body : [body];
 
-		for (const child of newBody) {
-			m(newEl, child);
-		}
+		// Mount child components and child elements onto newEl
+		(Array.isArray(body) ? body : [body]).forEach(child => m(newEl, child));
 
-		// Set attributes for our new element
-		if (typeof attr == "object") {
-			for (let attrName in attr) {
-				if (a(attr[attrName])) {
-					newEl[attrName] = attr[attrName];
-				} else {
-					newEl.setAttribute(attrName, attr[attrName]);
-				}
-			}
-		}
+		// Set attributes or event handlers for our new element
+		Object.entries(attr).forEach(([attrName, attrVal]) => a(attrVal) ? (newEl[attrName] = attrVal) : newEl.setAttribute(attrName, attrVal));
 
 		return newEl;
 	}

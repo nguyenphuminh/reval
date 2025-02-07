@@ -103,9 +103,9 @@ unmount(parent, componentName);
 
 ## State
 
-You can manage components' states using the `states` prop:
+You can manage components' state using the `state` prop:
 ```js
-this.states = {}
+this.state = {}
 ```
 
 and change the state with `setState`:
@@ -113,7 +113,7 @@ and change the state with `setState`:
 setState(component, { state: value });
 ```
 
-The HTML element got re-rendered every time states are changed.
+The HTML element got re-rendered every time state is changed.
 
 ### Scope
 
@@ -136,8 +136,8 @@ You can pass in handlers for each events as methods of the component's class:
 	}
 
 	onremount() {
-		// Gets triggered when component is remounted to another parent
-		// If component is unmounted then mounted, this will not be run
+		// Gets triggered when component is remounted to another
+		// parent or to the same parent with a different position
 	}
 ```
 
@@ -148,23 +148,23 @@ Basically, we will create a `Counter` component, set the `counter` state to `1`.
 ```js
 class Counter {
 	constructor() {
-		this.states = {
+		this.state = {
 			counter: 1
 		};
 	}
 
 	render() {
 		return el("h1", {}, [
-			this.states.counter,
+			this.state.counter,
 			
 			el("br"),
 
 			el("button", { 
-				onclick: () => setState(this, { counter: this.states.counter + 1 })
+				onclick: () => setState(this, { counter: this.state.counter + 1 })
 			}, "Increment"),
 
 			el("button", { 
-				onclick: () => setState(this, { counter: this.states.counter - 1 })
+				onclick: () => setState(this, { counter: this.state.counter - 1 })
 			}, "Decrement")
 		]);
 	}
