@@ -2,7 +2,7 @@
 	<br/>
 	<img src="./assets/logo.png"/>
 	<br/>
-	<div><b>An extremely lightweight (0.37kb), experimental, front-end library </b></div>
+	<div><b>An extremely lightweight (0.4kb gzipped), experimental, front-end library </b></div>
 	<br/>
 	<a href="https://github.com/nguyenphuminh/reval/blob/master/LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-orange.svg"/></a>
 	<a href="https://www.npmjs.com/package/revaljs"><img src="https://img.shields.io/npm/v/revaljs.svg?sanitize=true" alt="Version"></a>

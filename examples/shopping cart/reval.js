@@ -8,6 +8,9 @@ let c = item => item && a(item.render);
 // Utility to get the html element of a component/element
 let e = item => c(item) ? item.e : item;
 
+// Utility to remove child el from parent el
+let r = (parent, child) => parent.removeChild(child);
+
 // Utility to mount a component/element to another component/element
 let m = (target, child, before, replace) => {
 	// Check if target is a component, we would have to use target.e
@@ -31,7 +34,7 @@ let m = (target, child, before, replace) => {
 	c(child) ?
 	(
 		// Get appropriate handler and remove element from old parent if the parent exists
-		(handler = child.m ? (child.m.removeChild(child.e), child.onremount) : child.onmount),
+		(handler = child.m ? (r(child.m, child.e), child.onremount) : child.onmount),
 	
 		// Re-render
 		mount(child.e = child.render()),
@@ -56,7 +59,7 @@ let Reval = {
 		let newTarget = e(target);
 
 		// Unmount based on whether child is a component or an element
-		(c(child)) ? (newTarget.removeChild(child.e), delete child.m, a(child.onunmount) && child.onunmount()) : newTarget.removeChild(child);
+		(c(child)) ? (r(newTarget, child.e), delete child.m, a(child.onunmount) && child.onunmount()) : r(newTarget, child);
 	},
 
 	// Utility to re-render component with new state
@@ -74,15 +77,14 @@ let Reval = {
 		let newEl = document.createElement(tag);
 
 		// Mount child components and child elements onto newEl
-		(Array.isArray(body) ? body : [body]).forEach(child => m(newEl, child));
+		[].concat(body).map(child => m(newEl, child));
 
 		// Set attributes or event handlers for our new element
-		Object.entries(attr).forEach(([attrName, attrVal]) => a(attrVal) ? (newEl[attrName] = attrVal) : newEl.setAttribute(attrName, attrVal));
+		Object.entries(attr).map(([attrName, attrVal]) => a(attrVal) ? (newEl[attrName] = attrVal) : newEl.setAttribute(attrName, attrVal));
 
 		return newEl;
 	}
 }
 
-if (typeof module == "object") {
-	module.exports = Reval;
-}
+// Export for use in Node
+typeof module == "object" && (module.exports = Reval);
